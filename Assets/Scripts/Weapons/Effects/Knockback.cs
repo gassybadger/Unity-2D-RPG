@@ -19,7 +19,7 @@ public class Knockback : MonoBehaviour
     {
         if (Time.time - knockbackTime > knockbackRecoveryTime)
         {
-            rigidBody.linearVelocity = Vector2.zero;
+            //rigidBody.linearVelocity = Vector2.zero;
             if (transform.TryGetComponent(out EnemyPathfinding pathfinding))
             {
                 pathfinding.enabled = true;
@@ -27,15 +27,20 @@ public class Knockback : MonoBehaviour
         }
     }
 
-    public void ApplyKnockbackForce(Transform source, float knockbackAmount)
+    public void ApplyKnockbackForce(Vector3 source, float knockbackAmount)
     {
         if (transform.TryGetComponent(out EnemyPathfinding pathfinding))
         {
             pathfinding.enabled = false;
         }
 
-        Vector2 force = (transform.position - source.position).normalized * knockbackAmount * rigidBody.mass;
-        
+
+        Vector2 normalizedDirection = (transform.position - source).normalized;
+
+        Vector2 force = normalizedDirection * knockbackAmount * Mathf.Max(rigidBody.mass, 0.0001f);
+
+        Debug.Log($"Target Pos: {transform.position} | Source Pos: {source} | Norm: {normalizedDirection} | Force: {force}");
+
         rigidBody.AddForce(force, ForceMode2D.Impulse);
         knockbackTime = Time.time;
     }

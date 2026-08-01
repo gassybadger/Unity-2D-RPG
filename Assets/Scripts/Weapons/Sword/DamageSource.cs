@@ -20,13 +20,13 @@ public class DamageSource : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            damageable.Damage(WeaponType.Damage);
+            float knockbackAmount = WeaponType.AppliesKnockback ? WeaponType.KnockbackAmount : 0f;
 
-            // Anything after this line is likely a candidate for refactor. But not sure yet.
-            if (damageable.Transform.TryGetComponent(out Knockback knockbackable))
-            {
-                knockbackable.ApplyKnockbackForce(transform, WeaponType.KnockbackAmount);
-            }
+            damageable.Damage(
+                new IDamageable.DamageContext(
+                    WeaponType.Damage, 
+                    transform.position, 
+                    knockbackAmount));
         }
     }
 }

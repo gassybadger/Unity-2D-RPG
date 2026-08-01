@@ -15,7 +15,9 @@ MonoBehaviour:
   <Name>k__BackingField: Basic Bow
   <Icon>k__BackingField: {fileID: 21300000, guid: f4bf28f53ee7d694fab07ce9b975de09, type: 3}
   <Prefab>k__BackingField: {fileID: 3831124735343411618, guid: ddbb64eaf1167a4469dedd18df63e88e, type: 3}
-  <Damage>k__BackingField: 3
-  <Cooldown>k__BackingField: 1
-  <KnockbackAmount>k__BackingField: 0.5
+  <Damage>k__BackingField: 1
+  <Cooldown>k__BackingField: 0.75
+  <AppliesKnockback>k__BackingField: 1
+  <KnockbackAmount>k__BackingField: 0.25
   <HeldAngleOffset>k__BackingField: 0
+  <Range>k__BackingField: 20

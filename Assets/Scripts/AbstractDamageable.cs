@@ -35,21 +35,27 @@ public abstract class AbstractDamageable
     //
     public int MaxHealth { get; protected set; }
     public int CurrentHealth { get; protected set; }
-    
 
-    public void Damage(int amount)
+
+    public void Damage(IDamageable.DamageContext context)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth - amount, 0, CurrentHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth - context.Amount, 0, CurrentHealth);
         if (CurrentHealth <= 0)
         {
             Die();
             return;
         }
 
+        if (context.ApplyKnockback && TryGetComponent(out Knockback knockbackable))
+        {
+            knockbackable.ApplyKnockbackForce(context.Source, context.KnockbackForce);
+        }
+
         if (damageFlasher != null)
         {
             damageFlasher.DamageFlash();
         }
+
     }
 
     public void Heal(int amount)
@@ -68,4 +74,6 @@ public abstract class AbstractDamageable
             OnDeath();
         }
     }
+
+
 }

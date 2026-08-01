@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Sword : AbstractWeapon
 {
+    private static readonly int ANIMATION_TRIGGER = Animator.StringToHash("Attack");
+
     [SerializeField] private Animator _animator;
     [SerializeField] private DamageSource _damageSource;
 
@@ -14,6 +16,6 @@ public class Sword : AbstractWeapon
 
     protected override void PerformAttack()
     {
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger(ANIMATION_TRIGGER);
     }
 }

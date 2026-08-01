@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 499894127924204638}
   - component: {fileID: 1492631588533794604}
   - component: {fileID: 8221433446966234165}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: TransparentDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2476396386611784504}
   - component: {fileID: 2156519432107554787}
+  - component: {fileID: 1772197871566524408}
   m_Layer: 0
   m_Name: Physicality
   m_TagString: Untagged
@@ -280,3 +281,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0003811296, y: 0.14624296}
   m_Size: {x: 0.62779486, y: 0.198306}
   m_Direction: 1
+--- !u!114 &1772197871566524408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654585523404808393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded4c797cc088954eb61f15826ec4c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImmoveableObject

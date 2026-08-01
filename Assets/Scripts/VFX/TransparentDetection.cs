@@ -99,11 +99,21 @@ public class TransparentDetection : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private static bool IsValidObject(Collider2D collision)
     {
-        if (!collision.gameObject.TryGetComponent(out PlayerController _))
+        if (!collision.gameObject.TryGetComponent(out PlayerController _) || collision.gameObject.TryGetComponent(out Projectile _))
         {
             // Not the player, so dont do anything.
+            return false;
+        }
+
+        return true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!IsValidObject(collision))
+        {
             return;
         }
 
@@ -116,9 +126,8 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.gameObject.TryGetComponent(out PlayerController _))
+        if (!IsValidObject(collision))
         {
-            // Not the player, so dont do anything.
             return;
         }
 
@@ -171,11 +180,11 @@ public class TransparentDetection : MonoBehaviour
             }
             set
             {
-                if(_target is SpriteRenderer renderer)
+                if (_target is SpriteRenderer renderer)
                 {
                     renderer.color = value;
                 }
-                else if(_target is Tilemap tilemap)
+                else if (_target is Tilemap tilemap)
                 {
                     tilemap.color = value;
                 }

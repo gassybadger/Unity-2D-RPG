@@ -15,7 +15,10 @@ MonoBehaviour:
   <Name>k__BackingField: Magic Staff
   <Icon>k__BackingField: {fileID: 21300000, guid: 29763ff2256631d4da31739c8f717e4d, type: 3}
   <Prefab>k__BackingField: {fileID: 4075496623824417183, guid: 826a4fe17b4796a4ba8082fd9a459221, type: 3}
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 6
   <Cooldown>k__BackingField: 5
+  <AppliesKnockback>k__BackingField: 0
   <KnockbackAmount>k__BackingField: 5
   <HeldAngleOffset>k__BackingField: -25
+  <Range>k__BackingField: 5
+  <Ammo>k__BackingField: {fileID: 11400000, guid: 2b540080fed99394e9c2684b8a130312, type: 2}

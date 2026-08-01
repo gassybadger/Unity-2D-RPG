@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyClassSO
   <Name>k__BackingField: Slime
-  <MaxHealth>k__BackingField: 5
+  <MaxHealth>k__BackingField: 10
   <DeathVFX>k__BackingField: {fileID: 5394944497667716180, guid: 9fc28855047fd854a80d2e05b394b1f0, type: 3}
