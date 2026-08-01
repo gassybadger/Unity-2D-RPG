@@ -6,6 +6,9 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private GameObject _equippedItem;
 
 
+    public bool IsBusy { get; private set; }
+
+
     private void OnValidate()
     {
         if (_equippedItem != null
@@ -17,6 +20,7 @@ public class PlayerHand : MonoBehaviour
 
     private void Awake()
     {
+        IsBusy = false;
         EventBus<InventorySlotChanged>.OnEvent += HandleInventorySlotChanged;
     }
 
@@ -36,14 +40,19 @@ public class PlayerHand : MonoBehaviour
 
     private void SetEquippedItem(InventoryItemSO inventoryItemSO)
     {
+        IsBusy = true;
+
         if (_equippedItem != null)
         {
-            EquippedItem = null;
             Destroy(_equippedItem);
         }
 
+        _equippedItem = null;
+        EquippedItem = null;
+
         if (inventoryItemSO == null) 
         {
+            IsBusy = false;
             return; // Clear hands.
         }
 
@@ -52,11 +61,14 @@ public class PlayerHand : MonoBehaviour
         {
             Debug.LogError($"Attempted to equip a non-equipable item - {inventoryItemSO.Name}");
             Destroy(selectedGameObject);
+            IsBusy = false;
             return;
         }
 
         _equippedItem = selectedGameObject;
         EquippedItem = equippable;
+        
+        IsBusy = false;
     }
 
     private void HandleInventorySlotChanged(InventorySlotChanged @event) => SetEquippedItem(@event.SelectedInventoryItem);

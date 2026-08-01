@@ -1,9 +1,5 @@
-using System;
-using System.Runtime.CompilerServices;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -74,9 +70,17 @@ public class PlayerController : Singleton<PlayerController>
         HandleLeftClick();
     }
 
+    private void FixedUpdate()
+    {
+        SetPlayerFacingDirection();
+        Move();
+    }
+
+
+
     private void HandleLeftClick()
     {
-        if (_playerHand.EquippedItem == null) { return; }
+        if (_playerHand.EquippedItem == null || _playerHand.IsBusy) { return; }
 
         if (_playerHand.EquippedItem is IEquipable equipable)
         {
@@ -87,13 +91,6 @@ public class PlayerController : Singleton<PlayerController>
             }
         }
     }
-
-    private void FixedUpdate()
-    {
-        SetPlayerFacingDirection();
-        Move();
-    }
-
 
     private void HandleInventorySwitching()
     {

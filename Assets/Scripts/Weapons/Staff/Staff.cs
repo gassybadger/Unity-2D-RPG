@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bow : AbstractWeapon
+public class Staff : AbstractWeapon 
 {
     protected override void PerformAttack()
     {

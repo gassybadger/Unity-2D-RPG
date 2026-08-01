@@ -18,4 +18,4 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <Cooldown>k__BackingField: 5
   <KnockbackAmount>k__BackingField: 5
-  <HeldAngleOffset>k__BackingField: 0
+  <HeldAngleOffset>k__BackingField: -25
