@@ -2,11 +2,15 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : Singleton<PlayerController>
 {
+
     [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private PlayerHand _playerHand;
+
 
     private PlayerInputSystem playerInput;
     private TrailRenderer trailRenderer;
@@ -61,12 +65,37 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
-        HandleInventory();
-        PlayerInput();
-        Dash();
+        HandleInventorySwitching();
+
+        UpdatePlayerMovement();
+
+        HandleDash();
+
+        HandleLeftClick();
     }
 
-    private void HandleInventory()
+    private void HandleLeftClick()
+    {
+        if (_playerHand.EquippedItem == null) { return; }
+
+        if (_playerHand.EquippedItem is IEquipable equipable)
+        {
+            if (PlayerController.Instance.Input.Player.Attack.IsPressed() 
+                && !EventSystem.current.IsPointerOverGameObject())
+            {
+                equipable.Use();
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        SetPlayerFacingDirection();
+        Move();
+    }
+
+
+    private void HandleInventorySwitching()
     {
         bool needUpdate = false;
         bool isDelta = false;
@@ -112,24 +141,16 @@ public class PlayerController : Singleton<PlayerController>
         }
 
         if (!needUpdate) { return; }
-        
-        EventBus<ActiveInventoryChanged>.Raise(new ActiveInventoryChanged(slotIndex, isDelta));
-    }
 
-    private void FixedUpdate()
-    {
-        SetPlayerFacingDirection();
-        Move();
+        EventBus<InventorySlotSelection>.Raise(new InventorySlotSelection(slotIndex, isDelta));
     }
 
 
-
-    private void PlayerInput()
+    private void UpdatePlayerMovement()
     {
         movement = playerInput.Player.Move.ReadValue<Vector2>();
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
-
     }
 
 
@@ -138,7 +159,7 @@ public class PlayerController : Singleton<PlayerController>
         rigidBody.MovePosition(rigidBody.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 
-    private void Dash()
+    private void HandleDash()
     {
         bool dashReady = (Time.time - dashStartTime) > dashCooldownTime;
 

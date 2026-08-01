@@ -1,4 +1,4 @@
-﻿public interface IWeapon
+﻿public interface IWeapon : IEquipable
 {
     WeaponTypeSO WeaponTypeSO { get; }
 

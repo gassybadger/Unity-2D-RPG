@@ -4,6 +4,9 @@ using UnityEngine;
 public class WeaponTypeSO : InventoryItemSO
 {
     [field: SerializeField] public int Damage { get; private set; }
-    [field: SerializeField] public float AttackDelay { get; private set; }
+    [field: SerializeField] public float Cooldown { get; private set; }
     [field: SerializeField] public float KnockbackAmount { get; private set; }
+
+    [Range(-359f, 359f)]
+    [field: SerializeField] public float HeldAngleOffset { get; private set; }
 }

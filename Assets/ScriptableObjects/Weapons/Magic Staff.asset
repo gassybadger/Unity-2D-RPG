@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64707560816d71647bb2aed73f1042e5, type: 3}
-  m_Name: Basic Bow
+  m_Name: Magic Staff
   m_EditorClassIdentifier: Assembly-CSharp::WeaponTypeSO
-  <Name>k__BackingField: Basic Bow
-  <Icon>k__BackingField: {fileID: 21300000, guid: f4bf28f53ee7d694fab07ce9b975de09, type: 3}
-  <Prefab>k__BackingField: {fileID: 3831124735343411618, guid: ddbb64eaf1167a4469dedd18df63e88e, type: 3}
-  <Damage>k__BackingField: 3
-  <Cooldown>k__BackingField: 1
-  <KnockbackAmount>k__BackingField: 0.5
+  <Name>k__BackingField: Magic Staff
+  <Icon>k__BackingField: {fileID: 21300000, guid: 29763ff2256631d4da31739c8f717e4d, type: 3}
+  <Prefab>k__BackingField: {fileID: 4075496623824417183, guid: 826a4fe17b4796a4ba8082fd9a459221, type: 3}
+  <Damage>k__BackingField: 5
+  <Cooldown>k__BackingField: 5
+  <KnockbackAmount>k__BackingField: 5
   <HeldAngleOffset>k__BackingField: 0

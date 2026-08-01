@@ -10,7 +10,7 @@ public class UIInventoryContainer : MonoBehaviour
 
     private void Awake()
     {
-        EventBus<ActiveInventoryChanged>.OnEvent += OnActiveInventoryChanged;
+        EventBus<InventorySlotSelection>.OnEvent += OnActiveInventoryChanged;
     }
 
     private void Start()
@@ -21,7 +21,7 @@ public class UIInventoryContainer : MonoBehaviour
         }
     }
 
-    private void OnActiveInventoryChanged(ActiveInventoryChanged @event)
+    private void OnActiveInventoryChanged(InventorySlotSelection @event)
     {
         int currentSlot = _currentSlotIndex;
 

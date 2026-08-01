@@ -51,7 +51,7 @@ public class UIInventoryButton : MonoBehaviour
 
     private void HandleButtonClick()
     {
-        EventBus<ActiveInventoryChanged>.Raise(new ActiveInventoryChanged(_slotIndex));
+        EventBus<InventorySlotSelection>.Raise(new InventorySlotSelection(_slotIndex));
     }
 
 
@@ -61,6 +61,7 @@ public class UIInventoryButton : MonoBehaviour
     public void Select()
     {
         _activeHighlight.gameObject.SetActive(true);
+        EventBus<InventorySlotChanged>.Raise(new InventorySlotChanged(_inventoryItemSO));
     }
 
     public void Deselect()
